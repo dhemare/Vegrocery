@@ -30,7 +30,7 @@ namespace Vegrocery
             services.AddDbContext<ProductContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:VegroceryDB"], b => b.MigrationsAssembly("Vegrocery.WebAPI")));
             services.AddTransient<IProductParser, ProductParser>();
             services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<IDataRepository<Product>, ProductManager>();
+            services.AddTransient<IDataRepository<ProductEntity>, ProductManager>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

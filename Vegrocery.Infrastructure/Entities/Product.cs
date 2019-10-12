@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Vegrocery.Infrastructure.Entities
 {
-    public class Product
+    public class ProductEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

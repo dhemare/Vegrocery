@@ -13,7 +13,7 @@ namespace Vegrocery.Infrastructure.DBContext
 
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
                
     }
 }

@@ -8,28 +8,28 @@ using Vegrocery.Infrastructure.Repository;
 
 namespace Vegrocery.Infrastructure.DataManager
 {
-    public class ProductManager : IDataRepository<Product>
+    public class ProductManager : IDataRepository<ProductEntity>
     {
         private ProductContext _productContext;
         public ProductManager(ProductContext productContext)
         {
             _productContext = productContext;
         }
-        public Product Get(long id)
+        public ProductEntity Get(long id)
         {
             return _productContext.Products.FirstOrDefault(e => e.ProductId==id);
         }
 
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<ProductEntity> GetAll()
         {
             return _productContext.Products.ToList();
         }
-        public void Add(Product entity)
+        public void Add(ProductEntity entity)
         {
             _productContext.Products.Add(entity);
             _productContext.SaveChanges();
         }             
-        public void Update(Product dbentity, Product entity)
+        public void Update(ProductEntity dbentity, ProductEntity entity)
         {
             dbentity.Name = entity.Name;
             dbentity.Type = entity.Type;
@@ -38,7 +38,7 @@ namespace Vegrocery.Infrastructure.DataManager
 
             _productContext.SaveChanges();
         }
-        public void Delete(Product entity)
+        public void Delete(ProductEntity entity)
         {
             _productContext.Products.Remove(entity);
             _productContext.SaveChanges();

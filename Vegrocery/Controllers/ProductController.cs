@@ -3,6 +3,7 @@ using Vegrocery.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Vegrocery.WebAPI.Contracts;
 using Vegrocery.WebAPI.Parser;
+using Vegrocery.Infrastructure.Entities;
 
 namespace Vegrocery.WebAPI.Controllers
 {
@@ -26,11 +27,27 @@ namespace Vegrocery.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            return Ok("OK NOW");
+        [HttpPost]
+        public async Task<IActionResult> Update(ProductRequest productRequest)
+        {           
+            var product = _productParser.ParseFrom(productRequest);           
+            _productService.Update(product);
+            return Ok();
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(ProductRequest productRequest)
+        {
+            var product = _productParser.ParseFrom(productRequest);
+            _productService.Delete(product);
 
+            return Ok();
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            _productService.GetAll();
+            return Ok();
+        }
+                          
     }
 }
